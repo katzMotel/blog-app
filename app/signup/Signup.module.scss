@@ -1,0 +1,92 @@
+.signupContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #FFF7CC;
+    padding:40px;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.logoContainer{
+    margin-bottom: 20px;
+    height: 40px;
+    width: 40px;
+}
+.title{
+    color:#ff6347;
+    font-size:28px;
+    font-weight: bold;
+    margin-bottom:20px;
+}
+.form{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.input{
+    padding:12px;
+    margin-bottom:15px;
+    width:100%;
+    font-size:16px;
+    border-radius:30px;
+    border:1px solid #FFB870;
+    background-color: #FFE5B4;
+    color:#3B2200;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.error{
+    color: #ff4d4f;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+ }
+ .success{
+    color: #52c41a;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: #f6ffed;
+    padding: 10px;
+    border-radius: 5px;
+ }
+.button{
+    background-color: #ff6347;
+    color:#ffffff;
+    padding: 12px;
+    border:none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align:center;
+    &:hover{
+        background-color: #ff4500;
+        cursor:pointer;
+    }
+    &:disabled{
+        background-color: #ffa07a;
+        cursor:not-allowed;
+    }   
+}
+.footerText{
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+.link{
+    color: #ff6347;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }       
+}
