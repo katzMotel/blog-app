@@ -1,15 +1,17 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import styles from './MainContent.module.scss';
-import{
+import React from 'react';
+import {useState, useEffect} from 'react';
+import {
     collection,
     addDoc,
     query,
     orderBy,
     getDocs,
+    doc,
+    getDoc,
 } from 'firebase/firestore';
-import { db, auth } from '@/lib/firebaseConfig';
-import {
+import {db, auth} from '@/lib/firebaseConfig';
+import{
     FaImage,
     FaSmile,
     FaPoll,
@@ -19,8 +21,16 @@ import {
     FaItalic,
     FaUserCircle,
 } from 'react-icons/fa';
-import { useAuth } from '@/context/AuthContext';
+import {fixIcon} from '@/utils/fixIcon';
+import styles from './MainContent.module.scss';
+//import BlogPost from '../BlogPost/BlogPost';
+import {useAuth} from '@/context/AuthContext';
 
-export default function MainContent() {
-    
+export default function  MainContent() {
+    return(
+        <div className={styles.MainContent}>
+            <h2>Main Content Area</h2>
+        </div>
+    )
 }
+

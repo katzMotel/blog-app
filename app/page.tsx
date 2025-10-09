@@ -3,13 +3,13 @@ import React from "react";
 import styles from "./page.module.scss";
 import SignupPage from "./signup/page";
 import Link from "next/link";
+import HomePage from "@/components/HomePage";
 
 export default function Home() {
   return (
     <main className={styles.main}>
       
-      <Link href="/signup">=Signup</Link>
-      <Link href="/login">=Login</Link>
+      <HomePage />
       
     </main>
   );
