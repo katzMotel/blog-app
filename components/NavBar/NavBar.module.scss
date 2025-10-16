@@ -1,0 +1,32 @@
+.header{
+    background-color: #FFDAB9;
+    padding: 10px 20px;
+    color: white;
+    height: 90px;
+}
+.logoContainer{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    gap:10px;
+}
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    
+}
+.nav ul{
+    list-style:none;
+    display:flex;
+    gap:60px;
+
+    
+}
+ .nav ul li{
+    color:#3B2200;
+    text-decoration:none;
+    font-size:18px;
+    
+    font-weight:500;
+}

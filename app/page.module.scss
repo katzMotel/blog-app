@@ -159,7 +159,13 @@ a.secondary {
     justify-content: center;
   }
 }
-
+.sidebar {
+  width: 300px;
+  min-height: 100vh;
+  background: #f8f8f8;
+  border-left: 1px solid #eee;
+  // Add padding, etc. as needed
+}
 @media (prefers-color-scheme: dark) {
   .logo {
     filter: invert(black);
