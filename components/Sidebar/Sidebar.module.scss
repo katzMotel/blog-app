@@ -1,10 +1,26 @@
+.backdrop{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.5);
+    z-index:999;
+}
 .sidebar{
-    display:none;
-    padding: 16px;
-    background-color: #f9f9f9;
+    position:fixed;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    background-color: #fff7cc;
+    right:0;
+    top:110px;
+    width: 300px;
+    height: 100vh;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    color:#f9f9f9;
-    width: 100%;
+    color:#3B2200;
+    border-radius:12px;
+    overflow-y:auto;
     @media (min-width: 900px) {
         display: block;
     }
@@ -15,6 +31,7 @@
 .searchBar{
     position:relative;
     margin-bottom: 12px;
+    margin-top:12px;
 }
 .searchIcon{
     position: absolute;
@@ -40,7 +57,9 @@
     color: #cccccc;
 }
 .featuredPosts{
+    display:flex;
     list-style:none;
+    flex-direction:column;
     padding:0;
     margin:0;
     &li{

@@ -1,7 +1,13 @@
 'use client';
 import styles from './NavBar.module.scss';
 import Link from 'next/link';
+import Sidebar from '@/components/Sidebar/Sidebar';
+import {useState} from 'react';
 const NavBar = () =>{
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
     return(
         <header className={styles.header}>
             <div className={styles.logoContainer}>
@@ -19,10 +25,13 @@ const NavBar = () =>{
                     <li>
                         <Link href="#creators">Creators</Link>
                     </li>
-                    <li>
-                        <Link href="#menu">Menu</Link>
-                    </li>
+                    
                 </ul>
+                <div className={styles.menu}>
+                    <button onClick={toggleMenu} className={styles.menuButton}>Menu</button>
+                    <div className={styles.backdrop} onClick={toggleMenu} />
+                    {isMenuOpen && <Sidebar />}
+                </div>
             </nav>
         </header>
     )
