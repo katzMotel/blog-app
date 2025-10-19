@@ -7,6 +7,7 @@ import Home from "./page";
 import HomePage from "@/components/HomePage";
 import SideBar from "@/components/Sidebar/Sidebar";
 import NavBar from "@/components/NavBar/NavBar";
+import Hero from "@/components/Hero/Hero";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NavBar />
+        <Hero />
         <AuthProvider>
           {children}
           <CookieBanner/>
