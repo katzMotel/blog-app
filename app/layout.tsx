@@ -8,6 +8,7 @@ import HomePage from "@/components/HomePage";
 import SideBar from "@/components/Sidebar/Sidebar";
 import NavBar from "@/components/NavBar/NavBar";
 import Hero from "@/components/Hero/Hero";
+import Footer from "@/components/Footer/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,8 +38,8 @@ export default function RootLayout({
           {children}
           <CookieBanner/>
         </AuthProvider>
-        
-        
+
+        <Footer />
       </body>
     </html>
   );

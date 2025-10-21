@@ -6,8 +6,7 @@ import MainContent from '../MainContent/MainContent';
 const HomePage = () => {
     return (
        <div className={styles.container}>
-        <h1>Home 
-        Page</h1>
+        
         
         
        </div>

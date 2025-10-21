@@ -1,0 +1,25 @@
+.footer{
+    width:100%;
+    background-color:#FFDAB9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    
+    
+}
+.footer ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    gap:2rem;
+    flex-direction:row;
+}
+.footer ul li{
+    cursor:pointer;
+    color:#3B2200;
+    &:hover{
+        color:#ff6347;
+    }
+}
