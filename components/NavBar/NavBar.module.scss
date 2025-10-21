@@ -1,14 +1,16 @@
 .header{
-    background-color: #FFDAB9;
+    background: #FFDAB9;
     padding: 10px 20px;
     color: white;
     height: 90px;
+    
 }
 .logoContainer{
     display:flex;
     align-items: center;
     justify-content:center;
     gap:10px;
+    
 }
 .nav{
     display:flex;
@@ -67,4 +69,11 @@
 }
 .menuButton:active{
     box-shadow: 0 0 0 2px #ffc299, 1px 1px 2px 1px rgba(169, 84, 84, 0.5);
+}
+@media (max-width: 769px){
+    .menu{
+        display:flex;
+        align-items:flex-end;
+        margin-left:auto;
+    }
 }

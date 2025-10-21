@@ -1,29 +1,86 @@
 .hero{
     background: url('/media/pexels-pixabay-261735.jpg') no-repeat center center !important;
     background-size: cover !important;
-    height: 400px;
+    max-height: 400px;
     display: flex;
     flex-direction: column;
+    
+    padding-top:400px;
     justify-content: center;
-    align-items: center;
     color: inherit;
     text-align: flex-start;
 }
+
 .content{
     display:flex;
+    flex-direction:row;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:2rem;
+    z-index: 1000;
+    max-width:900px;
+    min-height:500px;
+    margin:0 auto;
     margin-top:550px;
-    z-index:1000;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+.h1{
+    font-size:2.5rem;
+    line-height:1.1;
+    text-align:left;
+    margin:0;
+    color: inherit;
+    min-width:250px;
+    max-width:300px;
+    word-break: normal;
+    white-space:normal;
+    flex-shrink:0;
+}
+.p{
+    flex: 1 1 400px;
+    max-width:600px;
+    min-width:600px;
+    margin:0;
+    text-align:left;
+}
+.rightContent{
+    flex: 1 1 350px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content: center;
+}
+@media(max-width:768px){
+    .content{
+        margin-top:600px;
+        display:flex;
+        flex-direction:column;
+    }
+    .h1{
+        text-align:center;
+        margin-bottom:1rem;
+    }
+    .rightContent{
+        align-items:center;
+    }
+    .p{
+        text-align:center;
+    }
+}
+
 .button{
     background-color: #ff6347;
     color: inherit;
-    padding: 1em;
+    padding: 10px 20px;
     border: none;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 14px;
+    text-align:center;
     cursor: pointer;
-    
+    margin-left:auto;
+    height: 35px;
+    min-width: 130px;
+
 }
 .button:hover{
     background-color: #ff4500;
@@ -31,4 +88,12 @@
 }
 .button:active{
     transform: scale(0.98);
+}
+@media(max-width:768px){
+    .button{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:1rem;
+    }
 }
