@@ -58,12 +58,7 @@ const Sidebar = () => {
                 </ul>
                 <Link className = {styles.viewAll} href = "#viewAllCreators">View All Creators</Link>
             </div>
-            <div className={styles.footerLinks}>
-                <Link href="#termsofservice">Terms of Service</Link>
-                <Link href="#privacypolicy">Privacy Policy</Link>
-                <Link href="#cookiepolicy">Cookie Policy</Link>
-                
-            </div>
+           
 
         </div>
     )
