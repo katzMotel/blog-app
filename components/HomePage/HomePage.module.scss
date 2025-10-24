@@ -127,8 +127,11 @@
 .signupButton:hover{
     background-color: #e5533d;
 }
+.signupButton:active{
+    transform:scale(.98);
+}
 .signInButton{
-    background-color: #bab4b4;
+    background-color: #D9DADA;
     color: white;
     border: none;
     border-radius: 12px;
@@ -138,6 +141,9 @@
     transition: background-color 0.2s, color 0.2s;
 }
 .signInButton:hover{
-    background-color: #ff6347;
+    background-color: #bab4b4;
     color: white;
+}
+.signInButton:active{
+    transform:scale(.98);
 }
