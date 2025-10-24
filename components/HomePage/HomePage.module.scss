@@ -6,19 +6,20 @@
     max-width: 1200px;
     margin: 0 auto;
     padding-top:400px;
-    h1{
-        font-size:32px;
-        margin-bottom:2rem;
-    }
-    p{
-        font-size:18px;
-    }
+    
+   
 }
 .creatorList{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
     gap:2rem;
     margin:2rem 0;
+}
+@media(max-width:900px){
+    .creatorList{
+        grid-template-columns: 1fr;
+        gap:1.5rem;
+    }
 }
 .creatorItem{
     background:#ffdab9;
@@ -34,17 +35,28 @@
         box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         cursor:pointer; 
     }
-    .img{
-        width:100px;
-        height:100px;
-        border-radius:50%;
-        object-fit:cover;
-        margin-bottom:1rem;
-    }
-    .h3{
-        margin:0.5rem 0;
-        font-size:20px;
-    }
+   
+    
+}
+.creatorImage{
+    width: 100px;
+    height: 100px;
+    background:#e0e0e0;
+    border-radius:12px;
+    margin-bottom:1rem;
+    object-fit:cover;
+    display:block;
+}
+.creatorName{
+    font-size:1.2rem;
+    font-weight:600;
+    margin-bottom:0.5rem;
+}
+.cardTitle{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:20px;
+    color:#3B2200;
 }
 .featuredBlogsSection{
     display:flex;
@@ -57,10 +69,75 @@
     margin: 0 auto;
     padding-top:400px;
 }
+.blogList{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:2rem;
+    margin:2rem 0;
+}
+@media(max-width:900px){
+    .blogList{
+        grid-template-columns: 1fr;
+        gap:1.5rem;
+    }}
 .blogItem{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
+    background:#ffdab9;
+    border-radius:12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 2rem 1.5rem;
     text-align:center;
-    margin-bottom:2rem;
+    transition:box-shadow 0.2s;
+    &:hover{
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        cursor:pointer; 
+    }
+}
+
+
+.signupSection{
+    background-color: #FFDAB9;
+    
+    padding: 40px;
+    text-align: center;
+    margin: 4rem auto;
+    max-width: 600px;
+    
+}
+.signupTitle{
+    font-size: 2rem;
+    color:inherit;
+    margin-bottom: 16px;
+}
+.signupDescription{
+    font-size: 1.2rem;
+    color:inherit;
+    margin-bottom: 24px;
+}
+.signupButton{
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 16px;
+    transition: background-color 0.2s;
+}
+.signupButton:hover{
+    background-color: #e5533d;
+}
+.signInButton{
+    background-color: #bab4b4;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+.signInButton:hover{
+    background-color: #ff6347;
+    color: white;
 }
