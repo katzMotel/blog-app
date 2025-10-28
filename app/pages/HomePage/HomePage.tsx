@@ -1,11 +1,41 @@
-'use client';
+"use client";
+import React, { useEffect, useState } from 'react';
 import styles from './HomePage.module.scss';
-import MainContent from '../MainContent/MainContent';
-
+import MainContent from '../../../components/MainContent/MainContent';
+import NavBar from '@/components/NavBar/NavBar';
+import Hero from '@/components/Hero/Hero';
+import Link from 'next/link';
+import UserProfile from '../../../components/UserProfile';
+import { auth } from '@/lib/firebaseConfig';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
 const HomePage = () => {
+    const [user, setUser] = useState<User | null>(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, (u) => {
+            setUser(u);
+        });
+        return () => unsub();
+    }, []);
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            router.push('/');
+        } catch (err) {
+            console.error('Sign-out error', err);
+        }
+    };
+
     return (
-       <><div className={styles.featuredCreatorsSection}>
+        
+       <>
+        
+       <Hero />
+       <div className={styles.featuredCreatorsSection}>
             <h1 className={styles.sectionTitle}>Meet Our Featured Creators</h1>
             <p>Discover the talented individuals shaping our community. Each creator brings
                 a unique perspective and a wealth of knowledge to share. Explore their profiles
@@ -67,8 +97,17 @@ const HomePage = () => {
             <div className={styles.signupSection}>
                 <h2 className={styles.signupTitle}>Join Our Blogging Community</h2>
                 <p className={styles.signupDescription}>Create an account to start sharing your stories and connecting with others.</p>
-                <button className={styles.signupButton}>Sign Up</button>
-                <button className={styles.signInButton}>Log In</button>
+                {!user ? (
+                    <>
+                        <Link href="/signup" className={styles.signupButton}>Sign Up</Link>
+                        <Link href="/login" className={styles.signInButton}>Log In</Link>
+                    </>
+                ) : (
+                    <>
+                        <Link href="/profile" className={styles.profileButton}>{user.displayName ?? user.email ?? 'Profile'}</Link>
+                        <button onClick={handleSignOut} className={styles.signOutButton}>Log Out</button>
+                    </>
+                )}
             </div></>
 
     );

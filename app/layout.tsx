@@ -4,11 +4,11 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import CookieBanner from "@/components/CookieBanner";
 import Home from "./page";
-import HomePage from "@/components/HomePage";
-import SideBar from "@/components/Sidebar/Sidebar";
-import NavBar from "@/components/NavBar/NavBar";
-import Hero from "@/components/Hero/Hero";
-import Footer from "@/components/Footer/Footer";
+import HomePage from "@/app/pages/HomePage";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,14 +32,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <NavBar />
-        <Hero />
+        
+        
         <AuthProvider>
+        <NavBar />
           {children}
-          <CookieBanner/>
+          <CookieBanner />
+          <Footer />
         </AuthProvider>
-
-        <Footer />
+       
+          
       </body>
     </html>
   );

@@ -147,3 +147,31 @@
 .signInButton:active{
     transform:scale(.98);
 }
+.signOutButton{
+    background-color: #D9DADA;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+.signOutButton:hover{
+    background-color: #bab4b4;
+    color: white;
+} 
+.signOutButton:active{
+    transform:scale(.98);
+}
+.profileButton{
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 16px;
+    transition: background-color 0.2s;
+}
