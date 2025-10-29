@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import styles from './HomePage.module.scss';
-import MainContent from '../../../components/MainContent/MainContent';
+import MainContent from '../MainContent/MainContent';
 import NavBar from '@/components/NavBar/NavBar';
 import Hero from '@/components/Hero/Hero';
 import Link from 'next/link';
-import UserProfile from '../../../components/UserProfile';
+import UserProfile from '../UserProfile';
 import { auth } from '@/lib/firebaseConfig';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
