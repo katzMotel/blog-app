@@ -10,10 +10,11 @@ const NavBar = () =>{
     };
     return(
         <header className={styles.header}>
-            <div className={styles.logoContainer}>
-                <img src="/favicon.ico" alt="Favicon" width={50} height={50} />
-                
-            </div>
+                        <Link href="/">
+                            <div className={styles.logoContainer}>
+                                    <img src="/favicon.ico" alt="Favicon" width={50} height={50} />
+                            </div>
+                        </Link>
             <nav className={styles.nav}>
                 <ul>
                     <li>
