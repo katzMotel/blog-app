@@ -1,0 +1,14 @@
+.container{
+    max-width: 65ch;
+    margin: 2rem auto;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}

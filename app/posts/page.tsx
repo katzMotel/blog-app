@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { collection, getDocs, query, orderBy } from "firebase/firestore"
 import { db } from "../../lib/firebaseConfig" // adjust if you use "@/lib/..." in other files
+import BlogPost from "@/components/BlogPost/BlogPost"
 
+import styles from "./page.module.scss"
 
 type PostSummary = {
   id: string
@@ -66,7 +68,7 @@ export default function PostsPage() {
             title={p.title}
             content={p.excerpt || ""}
             avatarUrl={p.authorAvatar || "/file.svg"}
-            time={formatTime(p.createdAt)}
+            
             likes={p.likes || 0}
           />
         ))}
