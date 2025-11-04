@@ -11,7 +11,7 @@
 }
 .input{
     padding: 0.5rem;
-    font-size: 1em;
+    font-size: 1.5em;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color:#eee;
@@ -25,6 +25,10 @@
     min-height: 300px;
     background-color:#eee;
     min-width:500px;
+    color:black;
+}
+.body{
+    font-size:1.5rem;
 }
 .submitButton{
     padding: 0.7rem 1.5rem;
@@ -36,6 +40,9 @@
     cursor: pointer;
     transition: background-color 0.2s;
     &:hover{
-        background-color: #218838;
+        background-color: #ff6347cc;
+    }
+    &:active{
+        transform: scale(0.98);
     }
 }

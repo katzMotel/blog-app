@@ -1,0 +1,107 @@
+.reader{
+    box-sizing:border-box;
+    width: 100%;
+    background: var(--background #fff);
+    color: var(--foreground, #111);
+    display:flex;
+    justify-content:center;
+    padding: 2rem 1rem;
+    overflow-x:hidden;
+}
+.container{
+    box-sizing:border-box;
+    width:100%;
+    max-width:66ch;
+    background:transparent;
+    margin: 0 auto;
+    padding: 0;
+}
+.content{
+    box-sizing:border-box;
+    width: 100%;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+    hyphens:auto;
+    pre,
+    code,
+    table,
+    img,
+    iframe{
+        max-width:100%;
+        box-sizing:border-box;
+    }
+    p{
+        line-height:1.6;
+        margin:0 0 1.15em 0;
+    }
+    h1,h2,h3,h4,h5,h6{
+        margin: 1.2em 0 0.6em 0;
+        line-height:1.2;
+        word-break:break-word;
+    }
+    ul, ol{
+        padding-left: 1.25em;
+        margin: 0 0 1em 0;
+
+    }
+    img, iframe{
+        display:block;
+        height: auto;
+    }
+    pre{
+        overflow:auto;
+        padding: 0.75rem;
+        background:rgba(0,0,0,0.04);
+        border-radius: 6px;
+    }
+}
+.actions{
+    margin-top: 1.25rem;
+    display:flex;
+    gap: 0.75rem;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    .editButton{
+        padding: 0.5rem 1rem;
+        font-size: 1em;
+        color: white;
+        background-color: #ff6347;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration:none;
+        transition: background-color 0.2s;
+        &:hover{
+            background-color: #ff6347cc;
+        }
+        &:active{
+            transform: scale(0.98);
+        }
+    }
+    .deleteButton{
+        padding: 0.5rem 1rem;
+        font-size: 1em;
+        color: white;
+        background-color: #a4776f;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration:none;
+        transition: background-color 0.2s;
+        &:hover{
+            background-color: #ff6347cc;
+        }
+        &:active{
+            transform: scale(0.98);
+        }
+    }
+}
+@media (max-width: 768px){
+    .reader{
+        padding: 1.25rem 1rem;
+    }
+    .container{
+        max-width: 46ch;
+    }
+}

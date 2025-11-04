@@ -56,18 +56,21 @@ export default function PostsPage() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Posts</h1>
-      <ul >
+      <div className={styles.list}>
         {posts.map((p) => (
-          <li key={p.id} >
-            <Link href={`/posts/${p.id}`} >
-              <h2>{p.title}</h2>
-              {p.excerpt ? <p>{p.excerpt}</p> : null}
-            </Link>
-          </li>
+          <BlogPost
+            key={p.id}
+            id={p.id}
+            title={p.title}
+            content={p.excerpt || ""}
+            avatarUrl={p.authorAvatar || "/file.svg"}
+            time={formatTime(p.createdAt)}
+            likes={p.likes || 0}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import BlogPost from '@/components/BlogPost/BlogPost';
 import styles from "./Profile.module.scss";
 import { db, auth } from "@/lib/firebaseConfig";
 import { onAuthStateChanged, User } from "firebase/auth";
@@ -81,16 +82,19 @@ const Profile = () => {
           <p>No posts yet — write something!</p>
         )}
 
-        <ul className={styles.postsList}>
+        <div className={styles.postsList}>
           {posts?.map((p) => (
-            <li key={p.id} className={styles.postItem}>
-              <Link href={`/posts/${p.id}`}>
-                <h3 className={styles.postTitle}>{p.title}</h3>
-              </Link>
-              {p.excerpt ? <p className={styles.excerpt}>{p.excerpt}</p> : null}
-            </li>
+            <BlogPost
+              key={p.id}
+              id={p.id}
+              title={p.title}
+              content={p.excerpt || ''}
+              avatarUrl={p.authorAvatar || '/file.svg'}
+              time={p.createdAt?.seconds ? new Date(p.createdAt.seconds * 1000).toLocaleDateString() : ''}
+              likes={p.likes || 0}
+            />
           ))}
-        </ul>
+        </div>
         <Link href="/posts/create" className={styles.createLink}>
           Create New Post
         </Link>

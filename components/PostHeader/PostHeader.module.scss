@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 0;
+}
+.title {
+  font-size: 1.25rem;
+  margin: 0;
+  color: inherit;
+  line-height: 1.2;
+}
+.meta {
+  color: inherit;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+@media (prefers-color-scheme: dark) {
+  .meta {
+    color: inherit;
+  }
+}

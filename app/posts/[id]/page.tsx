@@ -4,7 +4,8 @@ import { doc, getDoc, deleteDoc } from "firebase/firestore"
 import { db, auth } from "@/lib/firebaseConfig"
 import { usePathname, useRouter } from "next/navigation"
 import Link from "next/link"
-
+import PostHeader from "@/components/PostHeader/PostHeader"
+import styles from "./page.module.scss"
 export default function PostView() {
   const pathname = usePathname();
   const parts = pathname?.split("/") || [];
@@ -35,15 +36,15 @@ export default function PostView() {
   if (!post) return <div>Post not found</div>;
 
   return (
-    <article>
-      <h1>{post.title}</h1>
-      <p>By {post.authorName ?? "Unknown"}</p>
-      <div dangerouslySetInnerHTML={{ __html: post.body }} />
-      <div>
-        <Link href={`/posts/${post.id}/edit`}>Edit Post</Link>
+    <div className={styles.reader}>
+    <article className={styles.container}>
+      <PostHeader id={post.id} title={post.title} authorName={post.authorName} time={post.createdAt?.seconds ? new Date(post.createdAt.seconds*1000).toLocaleDateString() : ''} />
+      <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.body }} />
+      <div className={styles.actions}>
+        <Link className={styles.editButton} href={`/posts/${post.id}/edit`} >Edit Post</Link>
         {auth.currentUser?.uid === post.authorId ? (
           <button
-            style={{ marginLeft: 12 }}
+            className={styles.deleteButton}
             onClick={async () => {
               if (!confirm("Delete this post? This cannot be undone.")) return
               try {
@@ -62,5 +63,6 @@ export default function PostView() {
         ) : null}
       </div>
     </article>
+    </div>
   );
 }
