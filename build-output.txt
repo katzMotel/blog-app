@@ -1,0 +1,42 @@
+
+> blog-app@0.1.0 build
+> next build
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/dylangiddens/Desktop/CoPilotProject/BlogApp/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /Users/dylangiddens/Desktop/CoPilotProject/BlogApp/blog-app/package-lock.json
+
+   ▲ Next.js 15.5.0
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 1012ms
+
+./app/page.module.scss
+Deprecation Warning on line 170, column 12 of file:///Users/dylangiddens/Desktop/CoPilotProject/BlogApp/blog-app/app/page.module.scss:170:12:
+Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.invert instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+170 |     filter: invert(black);
+
+app/page.module.scss 171:13  root stylesheet
+
+Import trace for requested module:
+./app/page.module.scss
+./app/page.tsx
+
+ ✓ Compiled successfully in 1871ms
+   Linting and checking validity of types ...
+Failed to compile.
+
+app/posts/[id]/edit/page.tsx
+Type error: Type '{ params: { id: string; }; }' does not satisfy the constraint 'PageProps'.
+  Types of property 'params' are incompatible.
+    Type '{ id: string; }' is missing the following properties from type 'Promise<any>': then, catch, finally, [Symbol.toStringTag]
+
+Next.js build worker exited with code: 1 and signal: null

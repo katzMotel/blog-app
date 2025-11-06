@@ -7,14 +7,20 @@ import { db } from "../../lib/firebaseConfig" // adjust if you use "@/lib/..." i
 import BlogPost from "@/components/BlogPost/BlogPost"
 
 import styles from "./page.module.scss"
+import { time } from "console"
 
 type PostSummary = {
   id: string
   title: string
   excerpt?: string
   createdAt?: { seconds: number }
+  authorAvatar?: string
+  likes?: number
 }
-
+function formatTime(ts?: { seconds: number } | null) {
+  if (!ts?.seconds) return ""
+  return new Date(ts.seconds * 1000).toLocaleDateString()
+}
 export default function PostsPage() {
   const [posts, setPosts] = useState<PostSummary[] | null>(null)
   const [loading, setLoading] = useState(true)
@@ -30,7 +36,9 @@ export default function PostsPage() {
           id: d.id,
           title: (d.data().title as string) || "Untitled",
           excerpt: (d.data().excerpt as string) || d.data().content?.slice?.(0, 200) || "",
-          createdAt: d.data().createdAt as any,
+          createdAt: d.data().createdAt || null,
+          authorAvatar: d.data().authorAvatar || "/file.svg",
+          likes: d.data().likes || 0,
         }))
         setPosts(items)
       } catch (err) {
@@ -68,7 +76,7 @@ export default function PostsPage() {
             title={p.title}
             content={p.excerpt || ""}
             avatarUrl={p.authorAvatar || "/file.svg"}
-            
+            time={formatTime(p.createdAt)}
             likes={p.likes || 0}
           />
         ))}

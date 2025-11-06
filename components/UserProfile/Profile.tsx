@@ -13,6 +13,8 @@ type PostSummary = {
   title: string;
   excerpt?: string;
   createdAt?: { seconds: number } | null;
+  authorAvatar?: string;
+  likes?: number;
 };
 
 const Profile = () => {

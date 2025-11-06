@@ -6,11 +6,9 @@ import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore"
 import { db, auth } from "@/lib/firebaseConfig"
 import { useRouter } from "next/navigation"
 
-type Props = {
-  params: { id: string }
-}
 
-export default function EditPostRoute({ params }: Props) {
+
+export default function EditPostRoute({ params }: { params: { id: string } }) {
   const { id } = params
   const router = useRouter()
   const [initial, setInitial] = useState<any | null>(null)
@@ -53,7 +51,7 @@ export default function EditPostRoute({ params }: Props) {
 
   return (
     <div>
-      <h1>Edit Post</h1>
+      
       <PostEditor initial={initial} onSave={onSave} savingLabel="Update" />
     </div>
   )
