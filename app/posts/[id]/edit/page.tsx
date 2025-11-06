@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react"
 import PostEditor from "@/components/PostEditor/PostEditor"
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore"
 import { db, auth } from "@/lib/firebaseConfig"
-import { useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 
 
 
-export default function EditPostRoute({ params }: { params: { id: string } }) {
-  const { id } = params
+export default function EditPostRoute() {
+  const params = useParams<{ id: string }>()
+  const id = params.id
   const router = useRouter()
   const [initial, setInitial] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
