@@ -8,7 +8,19 @@
     padding: 2rem 1rem;
     overflow-x:hidden;
 }
-
+.backButtonContainer{
+    width:100%;
+    max-width:66ch;
+    margin-bottom:1rem;
+}
+.backButton{
+    text-decoration:none;
+    color: #ff6347;
+    font-weight:500;
+    &:hover{
+        text-decoration:underline;
+    }
+}
 .container{
     box-sizing:border-box;
     width:100%;

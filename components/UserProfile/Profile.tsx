@@ -7,6 +7,8 @@ import styles from "./Profile.module.scss";
 import { db, auth } from "@/lib/firebaseConfig";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
+import ProfileLayout from "./ProfileLayout";
+import ProfileActions from "./ProfileActions";
 
 type PostSummary = {
   id: string;
@@ -71,11 +73,23 @@ const Profile = () => {
 
   if (!user) return <div className={styles.container}>Loading...</div>;
 
-  return (
-    <div className={styles.container}>
+  const header = (
+    <>
       <h1 className={styles.title}>{user.displayName || "N/A"}</h1>
       <p className={styles.info}>{user.email}</p>
+    </>
+  );
+const actions = (
+  <ProfileActions
+    isOwner
+    initialName={user?.displayName ?? ""}
+    initialEmail={user?.email ?? ""}
+    onCreatePost={() => (window.location.href = "/posts/create")}
+  />
+);
 
+  return (
+    <ProfileLayout header={header} actions={actions}>
       <div className={styles.postsWrap}>
         <h2>Your posts</h2>
 
@@ -101,7 +115,7 @@ const Profile = () => {
           Create New Post
         </Link>
       </div>
-    </div>
+    </ProfileLayout>
   );
 };
 

@@ -37,7 +37,11 @@ export default function PostView() {
   if (!post) return <div>Post not found</div>
 
   return (
+    
     <div className={styles.reader}>
+    <div className={styles.backButtonContainer}>
+      <Link href="/profile" className={styles.backButton}> Back to {post.authorName}'s Profile</Link>
+    </div>
       <article className={styles.container}>
         <PostHeader
           id={post.id}

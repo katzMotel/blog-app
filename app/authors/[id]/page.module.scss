@@ -8,15 +8,8 @@
     padding: 2rem 1rem;
     overflow-x:hidden;
 }
-.container{
-    box-sizing:border-box;
-    width:100%;
-    max-width:66ch;
-    background:transparent;
-    margin: 0 auto;
-    padding: 0;
-}
-.list{
+
+.postList{
     display: flex;
     flex-direction: column;
     gap: 1.5rem;

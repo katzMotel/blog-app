@@ -66,6 +66,7 @@ export default function PostsPage() {
   }
 
   return (
+    <div className={styles.reader}>
     <div className={styles.container}>
       <h1>Posts</h1>
       <div className={styles.list}>
@@ -81,6 +82,7 @@ export default function PostsPage() {
           />
         ))}
       </div>
+    </div>
     </div>
   )
 }

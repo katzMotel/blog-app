@@ -21,10 +21,10 @@ const NavBar = () =>{
                         <Link href="#home">Home Feed</Link>
                     </li>
                     <li>
-                        <Link href="#featured">Featured Blogs</Link>
+                        <Link href="/posts">Featured Posts</Link>
                     </li>
                     <li>
-                        <Link href="#creators">Creators</Link>
+                        <Link href="/authors">Creators</Link>
                     </li>
                     
                 </ul>
