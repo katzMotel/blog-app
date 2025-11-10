@@ -28,6 +28,9 @@ export default function AuthorCard({author, showBio = true, className = "", acti
     const initialSrc = author.avatarUrl ?? defaultAvatar;
     const [src, setSrc] = useState(initialSrc);
 
+    const displayName = author.fullName ?? (author as any).name ?? 'Author';
+    const username = author.username ?? (author as any).handle ?? '';
+
     return (
         <article className={`${styles.card} ${className}`}>
             <Image
@@ -39,8 +42,8 @@ export default function AuthorCard({author, showBio = true, className = "", acti
                 onError={() => setSrc(defaultAvatar)}
             />
             <div className={styles.info}>
-                <span className={styles.name}>{author.fullName}</span>
-                <span className={styles.username}>@{author.username}</span>
+                <span className={styles.name}>{displayName}</span>
+                <span className={styles.username}>@{username}</span>
                 {showBio && author.bio ? <p className={styles.bio}>{author.bio}</p> : null}
             </div>
             {actions && <div className={styles.actions}>{actions}</div>}

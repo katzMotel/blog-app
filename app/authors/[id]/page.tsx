@@ -3,13 +3,13 @@ import AuthorCard from "@/components/AuthorCard/AuthorCard";
 import { doc, getDoc, query, where, orderBy, collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import BlogPost from "@/components/BlogPost/BlogPost";
-import styles from "../page"; // adjust path if your styles file is elsewhere
+import styles from "../page.module.scss"; // adjust path if your styles file is elsewhere
 
 import ProfileLayout from '@/components/UserProfile/ProfileLayout';
 import ProfileActions from '@/components/UserProfile/ProfileActions';
 
-export default async function AuthorProfile({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function AuthorProfile({ params }: { params: Promise<{ id: string }> }) {
+  const { id } =  await params;
   const userSnap = await getDoc(doc(db, "users", id));
   const user = userSnap.exists() ? (userSnap.data() as any) : null;
   const postsQ = query(collection(db, "posts"), where("authorId", "==", id), orderBy("createdAt", "desc"));
