@@ -15,9 +15,9 @@ export default function PostHeader({ id, title, authorName, time }: Props) {
   return (
     <div className={styles.header}>
       {id ? (
-        <Link href={`/posts/${id}`}>
+        
           <h2 className={styles.title}>{title}</h2>
-        </Link>
+        
       ) : (
         <h2 className={styles.title}>{title}</h2>
       )}
