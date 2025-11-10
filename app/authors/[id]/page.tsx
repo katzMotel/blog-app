@@ -3,7 +3,7 @@ import AuthorCard from "@/components/AuthorCard/AuthorCard";
 import { doc, getDoc, query, where, orderBy, collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import BlogPost from "@/components/BlogPost/BlogPost";
-import styles from "../page.module.scss"; // adjust path if your styles file is elsewhere
+import styles from "../author.module.scss"; // adjust path if your styles file is elsewhere
 import ProfileLayout from '@/components/UserProfile/ProfileLayout';
 import ProfileActions from '@/components/UserProfile/ProfileActions';
 

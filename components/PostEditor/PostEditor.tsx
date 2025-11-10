@@ -42,10 +42,7 @@ export default function PostEditor({initial = {}, onSave, savingLabel = "Save"}:
 
             </div>
             <div>
-                <label>
-                    <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} />
-                    Publish
-                </label>
+                
             </div>
             {error && <div style={{color: 'red'}}>{error}</div>}
             <button type="submit"  className = {styles.submitButton} disabled={loading}>{loading ? 'Saving...' : savingLabel}</button>

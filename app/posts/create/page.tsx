@@ -30,7 +30,7 @@ export default function CreatePostPage(){
     return (
         <div>
             <h1 className = {styles.title}>Create New Post</h1>
-            <PostEditor onSave={onSave} savingLabel="Create Post"/> 
+            <PostEditor onSave={onSave} savingLabel="Publish"/> 
         </div>
     )
 }

@@ -104,7 +104,7 @@ const HomePage = () => {
                     </>
                 ) : (
                     <>
-                        <Link href="/profile" className={styles.profileButton}>{user.displayName ?? user.email ?? 'Profile'}</Link>
+                        <Link href="/profile" className={styles.profileButton}>View Your Posts</Link>
                         <button onClick={handleSignOut} className={styles.signOutButton}>Log Out</button>
                     </>
                 )}
