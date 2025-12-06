@@ -49,7 +49,14 @@ export default function AuthorProfile() {
   }, [id]);
 
   if (loading) {
-    return <div className="container"><p>Loading...</p></div>;
+    return(
+      <div className= {styles.page}>
+        <div className={styles.skeletonCover}></div>
+        <div className="container">
+          <div className={styles.skeletonProfile}></div>
+        </div>
+      </div>
+    );
   }
 
   if (!userData) {
@@ -90,14 +97,77 @@ export default function AuthorProfile() {
             </div>
 
             {userData.bio && <p className={styles.bio}>{userData.bio}</p>}
+            <div className={styles.meta}>
+              {userData.location && (
+                <div className={styles.metaItem}>
+                  <span className={styles.metaIcon}>📍</span>
+                  {userData.location}
+                </div>
+              )}
+              {userData.website && (
+                <div className={styles.metaItem}>
+                  <span className={styles.metaIcon}>🔗</span>
+                  <a href={userData.website} target="_blank" rel="noopener noreferrer">
+                    {userData.website}
+                  </a>
+                </div>
+              )}
+            </div>
+            {userData.socialLinks && (
+              <div className={styles.socialLinks}>
+                {userData.socialLinks.github && (
+                  <a
+                    href={userData.socialLinks.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                  >
+                    GitHub
+                  </a>
+                )}
+                {userData.socialLinks.twitter && (
+                  <a
+                    href={userData.socialLinks.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                    >
+                    Twitter
+                    </a>
+                )}
+                {userData.socialLinks.instagram &&(
+                  <a
+                    href={userData.socialLinks.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                    >
+                      Instagram
+                    </a>
+                )}
+
+              </div>
+            )}
           </div>
         </div>
-
+        <div className={styles.stats}>
+              <div className={styles.stat}>
+                <span className={styles.statNumber}>{posts.length}</span>
+                <span className={styles.statLabel}>{posts.length=== 1 ? "Post" : "Posts"}</span>
+              </div>
+        </div>
         <div className={styles.postsSection}>
           <h2 className={styles.sectionTitle}>Posts</h2>
 
           {posts.length === 0 ? (
-            <p>No posts yet.</p>
+            <div className={styles.noPosts}>
+              <p>No posts yet.</p>
+              {isOwner && (
+                <Link href="/posts/create" className="btn btn--primary">
+                  Create Your First Post
+                </Link>
+              )}
+            </div>
           ) : (
             <div className="grid grid--cols-1 grid--md-cols-2 grid--lg-cols-3 grid--gap-6">
               {posts.map((post) => (
