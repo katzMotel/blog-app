@@ -1,0 +1,210 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.page {
+  min-height: 100vh;
+  padding: $spacing-12 0;
+  background-color: $color-bg-secondary;
+
+  @include respond-to(md) {
+    padding: $spacing-16 0;
+  }
+}
+
+.header {
+  @include flex-between;
+  margin-bottom: $spacing-10;
+  align-items: center;
+}
+
+.title {
+  @include heading-1;
+}
+
+.form {
+  @include card-base;
+  padding: $spacing-8;
+  background-color: $color-bg-primary;
+
+  @include respond-to(md) {
+    padding: $spacing-10;
+  }
+}
+
+.section {
+  padding-bottom: $spacing-8;
+  margin-bottom: $spacing-8;
+  border-bottom: 1px solid $color-border-light;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.sectionTitle {
+  @include heading-3;
+  margin-bottom: $spacing-6;
+  color: $color-text-primary;
+}
+
+.formGroup {
+  margin-bottom: $spacing-6;
+}
+
+.label {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  margin-bottom: $spacing-2;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: $spacing-3 $spacing-4;
+  font-size: $font-size-base;
+  border: 2px solid $color-border-default;
+  border-radius: $radius-default;
+  background-color: $color-bg-primary;
+  color: $color-text-primary;
+  transition: $transition-all;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary-500;
+    box-shadow: 0 0 0 3px rgba($color-primary-500, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-text-tertiary;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  font-family: inherit;
+  line-height: $line-height-relaxed;
+}
+
+.imagePreview {
+  margin-top: $spacing-4;
+  
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: $radius-full;
+    object-fit: cover;
+    border: 3px solid $color-primary-200;
+  }
+}
+
+.coverPreview {
+  margin-top: $spacing-4;
+  
+  img {
+    width: 100%;
+    max-height: 200px;
+    border-radius: $radius-md;
+    object-fit: cover;
+  }
+}
+
+.error {
+  @include flex-center;
+  gap: $spacing-2;
+  color: $color-error;
+  font-size: $font-size-sm;
+  background-color: rgba($color-error, 0.1);
+  padding: $spacing-3 $spacing-4;
+  border-radius: $radius-default;
+  border-left: 4px solid $color-error;
+  margin-bottom: $spacing-6;
+}
+
+.success {
+  @include flex-center;
+  gap: $spacing-2;
+  color: $color-success;
+  font-size: $font-size-sm;
+  background-color: rgba($color-success, 0.1);
+  padding: $spacing-3 $spacing-4;
+  border-radius: $radius-default;
+  border-left: 4px solid $color-success;
+  margin-bottom: $spacing-6;
+}
+
+.actions {
+  @include flex-center;
+  gap: $spacing-4;
+  margin-top: $spacing-8;
+  padding-top: $spacing-8;
+  border-top: 1px solid $color-border-light;
+
+  @include respond-to-max(sm) {
+    flex-direction: column-reverse;
+    
+    button,
+    a {
+      width: 100%;
+    }
+  }
+}
+// File upload styles
+.uploadArea {
+  margin-bottom: $spacing-4;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-8;
+  border: 2px dashed $color-border-default;
+  border-radius: $radius-default;
+  background-color: $color-bg-secondary;
+  cursor: pointer;
+  transition: $transition-all;
+
+  &:hover {
+    border-color: $color-primary-500;
+    background-color: rgba($color-primary-50, 0.5);
+  }
+
+  span:first-child {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    margin-bottom: $spacing-2;
+  }
+}
+
+.fileHint {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background-color: $color-gray-200;
+  border-radius: $radius-full;
+  overflow: hidden;
+  margin-bottom: $spacing-4;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    $color-primary-500 0%,
+    $color-accent-500 100%
+  );
+  transition: width 0.3s ease;
+  border-radius: $radius-full;
+}

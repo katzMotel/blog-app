@@ -28,6 +28,7 @@ import Toast from '@/components/Toast';
         }
     }
     return(
+        <div className={styles.page}>
         <div className={styles.loginContainer}>
             <div className={styles.logoContainer}>
                 <img src="/favicon.ico" alt="Favicon" width={50} height={50} />
@@ -75,6 +76,7 @@ import Toast from '@/components/Toast';
                 />
             )}  
         </div>
+    </div>
     )
 }
 export default LoginPage;

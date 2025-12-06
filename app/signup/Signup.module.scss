@@ -1,92 +1,128 @@
-.signupContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width:100%;
-    max-width: 400px;
-    margin: 50px auto;
-    background-color: #FFF7CC;
-    padding:40px;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-6;
+  background: linear-gradient(
+    135deg,
+    rgba($color-primary-50, 0.5) 0%,
+    rgba($color-secondary-50, 0.5) 100%
+  );
 }
-.logoContainer{
-    margin-bottom: 20px;
-    height: 40px;
-    width: 40px;
+
+.signupContainer {
+  width: 100%;
+  max-width: 480px;
+  @include card-base;
+  padding: $spacing-10;
+  background-color: $color-bg-primary;
+
+  @include respond-to(md) {
+    padding: $spacing-12;
+  }
 }
-.title{
-    color:#ff6347;
-    font-size:28px;
-    font-weight: bold;
-    margin-bottom:20px;
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: $spacing-6;
+
+  img {
+    width: 64px;
+    height: 64px;
+  }
 }
-.form{
-    width:100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+.title {
+  @include heading-2;
+  text-align: center;
+  color: $color-text-primary;
+  margin-bottom: $spacing-8;
 }
-.input{
-    padding:12px;
-    margin-bottom:15px;
-    width:100%;
-    font-size:16px;
-    border-radius:30px;
-    border:1px solid #FFB870;
-    background-color: #FFE5B4;
-    color:#3B2200;
-    transition: border 0.2s, box-shadow 0.2s;
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
 }
-.error{
-    color: #ff4d4f;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 10px;
-    background-color: #ffe6e6;
-    padding: 10px;
-    border-radius: 5px;
- }
- .success{
-    color: #52c41a;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 10px;
-    background-color: #f6ffed;
-    padding: 10px;
-    border-radius: 5px;
- }
-.button{
-    background-color: #ff6347;
-    color:#ffffff;
-    padding: 12px;
-    border:none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align:center;
-    &:hover{
-        background-color: #ff4500;
-        cursor:pointer;
-    }
-    &:disabled{
-        background-color: #ffa07a;
-        cursor:not-allowed;
-    }   
+
+.input {
+  padding: $spacing-4;
+  width: 100%;
+  font-size: $font-size-base;
+  border-radius: $radius-default;
+  border: 2px solid $color-border-default;
+  background-color: $color-bg-primary;
+  color: $color-text-primary;
+  transition: $transition-all;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary-500;
+    box-shadow: 0 0 0 3px rgba($color-primary-500, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-text-tertiary;
+  }
 }
-.footerText{
-    margin-top: 20px;
-    font-size: 14px;
-    color: #555;
+
+.error {
+  @include flex-center;
+  gap: $spacing-2;
+  color: $color-error;
+  font-size: $font-size-sm;
+  background-color: rgba($color-error, 0.1);
+  padding: $spacing-3 $spacing-4;
+  border-radius: $radius-default;
+  border-left: 4px solid $color-error;
 }
-.link{
-    color: #ff6347;
-    text-decoration: none;
-    &:hover{
-        text-decoration: underline;
-        cursor: pointer;
-    }       
+
+.success {
+  @include flex-center;
+  gap: $spacing-2;
+  color: $color-success;
+  font-size: $font-size-sm;
+  background-color: rgba($color-success, 0.1);
+  padding: $spacing-3 $spacing-4;
+  border-radius: $radius-default;
+  border-left: 4px solid $color-success;
+}
+
+.button {
+  @include button-primary;
+  @include button-large;
+  background-color: $color-primary-500;
+  margin-top: $spacing-2;
+
+  &:disabled {
+    background-color: $color-gray-400;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.footerText {
+  margin-top: $spacing-6;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  text-align: center;
+  line-height: $line-height-relaxed;
+}
+
+.link {
+  color: $color-primary-600;
+  text-decoration: none;
+  font-weight: $font-weight-medium;
+  transition: $transition-colors;
+
+  &:hover {
+    color: $color-primary-700;
+    text-decoration: underline;
+  }
 }

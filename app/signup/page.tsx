@@ -83,6 +83,7 @@ const SignUpPage = () =>{
 
     };
         return (
+            <div className={styles.page}>
             <section className={styles.signupContainer}>
                 <div className={styles.logoContainer}>
                     <img src="/favicon.ico" alt="Favicon" width={50} height={50} />
@@ -148,6 +149,7 @@ const SignUpPage = () =>{
                     </Link>
                 </p>
             </section>
+            </div>
         );
 }
 

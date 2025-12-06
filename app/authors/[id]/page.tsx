@@ -71,7 +71,11 @@ export default function AuthorProfile() {
   return (
     <div className={styles.page}>
       <div className={styles.coverSection}>
-        <div className={styles.coverPlaceholder}></div>
+        {userData.coverImage ? (
+          <img src ={userData.coverImage} alt="Cover" className={styles.coverImage} />
+        ) : (
+          <div className={styles.coverPlaceholder}></div>
+        )}
       </div>
 
       <div className="container">
