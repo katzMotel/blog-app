@@ -1,25 +1,77 @@
-.footer{
-    width:100%;
-    background-color:#FFDAB9;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:absolute;
-    
-    
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// --------------------------------------------
+// FOOTER COMPONENT
+// --------------------------------------------
+
+.footer {
+  width: 100%;
+  background-color: $color-primary-100;
+  padding: $spacing-12 0;
+  margin-top: $spacing-16;
+  border-top: 1px solid $color-border-light;
+
+  @include respond-to(md) {
+    padding: $spacing-16 0;
+  }
 }
-.footer ul{
-    list-style:none;
-    padding:0;
-    margin:0;
-    display:flex;
-    gap:2rem;
-    flex-direction:row;
+
+.footerContent {
+  @include container;
+  @include flex-column-center;
+  gap: $spacing-8;
 }
-.footer ul li{
-    cursor:pointer;
-    color:#3B2200;
-    &:hover{
-        color:#ff6347;
+
+.footer ul {
+  @include flex-center;
+  gap: $spacing-8;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+
+  @include respond-to-max(sm) {
+    flex-direction: column;
+    gap: $spacing-4;
+  }
+}
+
+.footer ul li {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  cursor: pointer;
+  transition: $transition-colors;
+  position: relative;
+
+  &:hover {
+    color: $color-primary-600;
+  }
+
+  // Optional: Add separator between items (except last)
+  &:not(:last-child)::after {
+    content: '•';
+    position: absolute;
+    right: -#{$spacing-4};
+    color: $color-text-tertiary;
+
+    @include respond-to-max(sm) {
+      display: none;  // Hide separators on mobile
     }
+  }
+}
+
+// Footer bottom section (copyright, etc)
+.footerBottom {
+  margin-top: $spacing-6;
+  padding-top: $spacing-6;
+  border-top: 1px solid $color-border-light;
+  text-align: center;
+  
+  p {
+    font-size: $font-size-sm;
+    color: $color-text-tertiary;
+    margin: 0;
+  }
 }

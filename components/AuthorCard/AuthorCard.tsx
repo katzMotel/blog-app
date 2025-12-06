@@ -1,52 +1,107 @@
-"use client";
-import Link from "next/link"
-import styles from "./AuthorCard.module.scss"
-import Image from "next/image";
-import { useState } from "react";
+// components/AuthorCard/AuthorCard.tsx
+import styles from './AuthorCard.module.scss';
+import Link from 'next/link';
 
-
-export interface Author{
-    id: string
-    fullName: string
-    username: string
-    avatarUrl?: string
-    bio?: string
-    createdAt?: any
+interface AuthorCardProps {
+  id: string;
+  name: string;
+  username: string;
+  avatar: string;
+  bio?: string;
+  stats?: {
+    posts?: number;
+    followers?: number;
+    following?: number;
+  };
+  isFollowing?: boolean;
+  isOnline?: boolean;
+  isVerified?: boolean;
+  compact?: boolean;
+  onFollow?: () => void;
+  onMessage?: () => void;
 }
-type Props = {
-    author: Author
-    showBio?: boolean
-    className?: string
-    actions?: React.ReactNode
-}
-export default function AuthorCard({author, showBio = true, className = "", actions}: Props) {
-    // Defensive: if caller accidentally passes undefined, avoid runtime crash
-    if (!author) return null;
 
-    // Use the existing file in public/ to avoid renaming assets
-    const defaultAvatar = "/defaultAvatarImg.png";
-    const initialSrc = author.avatarUrl ?? defaultAvatar;
-    const [src, setSrc] = useState(initialSrc);
+export default function AuthorCard({
+  id,
+  name,
+  username,
+  avatar,
+  bio,
+  stats,
+  isFollowing = false,
+  isOnline = false,
+  isVerified = false,
+  compact = false,
+  onFollow,
+  onMessage,
+}: AuthorCardProps) {
+  return (
+    <div className={`${styles.card} ${compact ? styles.compact : ''}`}>
+      <div className={styles.avatarWrapper}>
+        <Link href={`/authors/${id}`}>
+          <img src={avatar} alt={name} className={styles.avatar} />
+        </Link>
+        {isOnline && <div className={styles.statusDot} />}
+      </div>
 
-    const displayName = author.fullName ?? (author as any).name ?? 'Author';
-    const username = author.username ?? (author as any).handle ?? '';
+      <div className={styles.info}>
+        <div>
+          <Link href={`/authors/${id}`}>
+            <h3 className={styles.name}>
+              {name}
+              {isVerified && (
+                <span className={styles.badge}>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                  </svg>
+                  Verified
+                </span>
+              )}
+            </h3>
+          </Link>
+          <p className={styles.username}>{username}</p>
+        </div>
 
-    return (
-        <article className={`${styles.card} ${className}`}>
-            <Image
-                src={src}
-                alt={`${author?.fullName ?? "Author"}'s avatar`}
-                width={64}
-                height={64}
-                className={styles.avatar}
-                onError={() => setSrc(defaultAvatar)}
-            />
-            <div className={styles.info}>
-                <span className={styles.name}>{displayName}</span>
-                <span className={styles.username}>@{username}</span>
-                {showBio && author.bio ? <p className={styles.bio}>{author.bio}</p> : null}
-            </div>
-            {actions && <div className={styles.actions}>{actions}</div>}
-        </article>
-    );
+        {bio && <p className={styles.bio}>{bio}</p>}
+
+        {stats && (
+          <div className={styles.stats}>
+            {stats.posts !== undefined && (
+              <div className={styles.stat}>
+                <span className={styles.statNumber}>{stats.posts}</span>
+                <span className={styles.statLabel}>Posts</span>
+              </div>
+            )}
+            {stats.followers !== undefined && (
+              <div className={styles.stat}>
+                <span className={styles.statNumber}>{stats.followers}</span>
+                <span className={styles.statLabel}>Followers</span>
+              </div>
+            )}
+            {stats.following !== undefined && (
+              <div className={styles.stat}>
+                <span className={styles.statNumber}>{stats.following}</span>
+                <span className={styles.statLabel}>Following</span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {(onFollow || onMessage) && (
+        <div className={styles.actions}>
+          {onFollow && (
+            <button className={styles.followButton} onClick={onFollow}>
+              {isFollowing ? 'Following' : 'Follow'}
+            </button>
+          )}
+          {onMessage && (
+            <button className={styles.messageButton} onClick={onMessage}>
+              Message
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }

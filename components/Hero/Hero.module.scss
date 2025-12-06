@@ -1,101 +1,130 @@
-.hero{
-    background: url('/media/pexels-pixabay-261735.jpg') no-repeat center center !important;
-    background-size: cover !important;
-    max-height: 400px;
-    display: flex;
-    flex-direction: column;
-    
-    padding-top:400px;
-    justify-content: center;
-    color: inherit;
-    text-align: flex-start;
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  // Remove the margin-top and padding-top - no overlap
+
+  @include respond-to(md) {
+    min-height: 700px;
+  }
+
+  @include respond-to(lg) {
+    min-height: 800px;
+  }
+
+  // Background image
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/media/pexels-pixabay-261735.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: 0;
+  }
+
+  // Gradient overlay - back to darker since nav is above
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($color-primary-900, 0.7) 0%,
+      rgba($color-secondary-900, 0.75) 50%,
+      rgba($color-accent-900, 0.7) 100%
+    );
+    z-index: 1;
+  }
 }
 
-.content{
-    display:flex;
-    flex-direction:row;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:2rem;
-    z-index: 1000;
-    max-width:900px;
-    min-height:500px;
-    margin:0 auto;
-    margin-top:550px;
+.content {
+  @include container;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+  padding: $spacing-12 0;
+
+  @include respond-to(md) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-12;
+  }
+
+  @include respond-to(lg) {
+    gap: $spacing-16;
+  }
 }
 
-.h1{
-    font-size:2.5rem;
-    line-height:1.1;
-    text-align:left;
-    margin:0;
-    color: inherit;
-    min-width:250px;
-    max-width:300px;
-    word-break: normal;
-    white-space:normal;
-    flex-shrink:0;
-}
-.p{
-    flex: 1 1 400px;
-    max-width:800px;
-    min-width:600px;
-    margin:0;
-    text-align:left;
-}
-.rightContent{
-    flex: 1 1 350px;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    justify-content: center;
-}
-@media(max-width:768px){
-    .content{
-        margin-top:540px;
-        display:flex;
-        flex-direction:column;
-    }
-    .h1{
-        text-align:center;
-        margin-bottom:1rem;
-    }
-    .rightContent{
-        
-        align-items:center;
-    }
-    .p{
-        max-width:400px;
-        text-align:center;
-    }
+.leftContent {
+  flex: 1;
+  max-width: 600px;
 }
 
-.button{
-    background-color: #ff6347;
-    color: inherit;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 30px;
-    font-size: 14px;
-    text-align:center;
-    cursor: pointer;
-    margin-left:auto;
-    height: 35px;
-    min-width: 130px;
+.h1 {
+  @include heading-1;
+  color: $color-text-inverse;
+  margin-bottom: $spacing-6;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 
+  @include respond-to-max(md) {
+    text-align: center;
+  }
 }
-.button:hover{
-    background-color: #ff4500;
-    cursor: pointer;
+
+.p {
+  @include body-large;
+  color: rgba($color-text-inverse, 0.95);
+  line-height: $line-height-relaxed;
+  margin-bottom: $spacing-8;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+
+  @include respond-to-max(md) {
+    text-align: center;
+  }
 }
-.button:active{
-    transform: scale(0.98);
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  align-items: flex-start;
+
+  @include respond-to-max(md) {
+    align-items: center;
+    width: 100%;
+  }
 }
-@media(max-width:768px){
-    .button{
-        display:block;
-        margin-left:auto;
-        margin-right:auto;
-        margin-top:1rem;
-    }
+
+.button {
+  @include button-primary;
+  @include button-large;
+  background-color: $color-accent-500;
+  color: $color-text-primary;
+  font-weight: $font-weight-semibold;
+  box-shadow: $shadow-xl;
+  
+  &:hover:not(:disabled) {
+    background-color: $color-accent-600;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba($color-accent-600, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
 }

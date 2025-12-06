@@ -1,35 +1,231 @@
-.card{
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    justify-content:center;
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// --------------------------------------------
+// AUTHOR CARD COMPONENT
+// --------------------------------------------
+
+.card {
+  @include card-interactive;
+  padding: $spacing-8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $spacing-6;
+  background: linear-gradient(
+    135deg,
+    $color-bg-primary 0%,
+    rgba($color-secondary-50, 0.4) 100%
+  );
+  border: 1px solid $color-border-light;
+
+  @include respond-to(md) {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  // Add warm glow on hover
+  &:hover {
+    border-color: $color-primary-300;
+    box-shadow: 0 8px 24px rgba($color-primary-500, 0.15);
+  }
 }
-.avatar{
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
+
+.avatarWrapper {
+  position: relative;
+  flex-shrink: 0;
 }
-.info{
-    display: flex;
-    flex-direction: column;
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: $radius-full;
+  object-fit: cover;
+  border: 3px solid $color-primary-200;
+  box-shadow: $shadow-md;
+  transition: $transition-all;
+
+  .card:hover & {
+    border-color: $color-primary-400;
+    transform: scale(1.05);
+  }
+
+  @include respond-to(md) {
+    width: 96px;
+    height: 96px;
+  }
 }
-.name{
-    font-weight: bold;
-    font-size: 1.2rem;
+
+// Online status indicator (optional)
+.statusDot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  background-color: $color-success;
+  border: 3px solid $color-bg-primary;
+  border-radius: $radius-full;
+  box-shadow: $shadow-sm;
 }
-.username{
-    color: #666;
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+  flex: 1;
+  min-width: 0; // Prevent overflow
 }
-.bio{
-    margin-top: 0.5rem;
-    color: #333;
+
+.name {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  margin: 0;
+  transition: $transition-colors;
+
+  &:hover {
+    color: $color-primary-600;
+    cursor: pointer;
+  }
+
+  @include respond-to(md) {
+    font-size: $font-size-2xl;
+  }
 }
-.actions{
-    margin-top: 1rem;
-    display: flex;
-    gap: 0.5rem;
+
+.username {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  font-weight: $font-weight-medium;
+
+  &::before {
+    content: '@';
+    color: $color-primary-500;
+  }
+}
+
+.bio {
+  @include body-normal;
+  color: $color-text-secondary;
+  margin: 0;
+  line-height: $line-height-relaxed;
+  
+  // Limit to 3 lines
+  @include line-clamp(3);
+}
+
+// Stats section (posts, followers, etc.)
+.stats {
+  display: flex;
+  gap: $spacing-6;
+  margin-top: $spacing-2;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include respond-to(md) {
+    justify-content: flex-start;
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include respond-to(md) {
+    align-items: flex-start;
+  }
+}
+
+.statNumber {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-primary-600;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// Action buttons
+.actions {
+  display: flex;
+  gap: $spacing-3;
+  margin-top: $spacing-4;
+  width: 100%;
+  flex-wrap: wrap;
+
+  @include respond-to(md) {
+    width: auto;
+    margin-top: 0;
+    align-self: flex-start;
+  }
+}
+
+.followButton {
+  @include button-primary;
+  flex: 1;
+  min-width: 100px;
+  background-color: $color-primary-500;
+
+  @include respond-to(md) {
+    flex: none;
+  }
+}
+
+.messageButton {
+  @include button-outline;
+  flex: 1;
+  min-width: 100px;
+
+  @include respond-to(md) {
+    flex: none;
+  }
+}
+
+// Badge for featured/verified authors
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-1;
+  padding: $spacing-1 $spacing-2;
+  background-color: $color-accent-100;
+  color: $color-accent-700;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+// Compact variant for lists
+.card.compact {
+  padding: $spacing-4;
+  flex-direction: row;
+  align-items: center;
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bio,
+  .stats {
+    display: none;
+  }
+
+  .actions {
+    margin-top: 0;
+  }
 }

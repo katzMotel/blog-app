@@ -1,18 +1,15 @@
-"use client";
-import Image from "next/image"; 
-import React from "react";
-import styles from "./page.module.scss";
-import SignupPage from "./signup/page";
-import Link from "next/link";
-import HomePage from "../components/HomePage";
-import NavBar from "@/components/NavBar";
-import Footer from "@/components/Footer";
+import Hero from '@/components/Hero/Hero';
+import FeaturedCreators from '@/components/FeaturedCreators/FeaturedCreators';
+import FeaturedPosts from '@/components/FeaturedPosts/FeaturedPosts';
+import SignupCTA from '@/components/SignupCTA/SignupCTA';
+
 export default function Home() {
   return (
-    <main className={styles.main}>
-        
-       <HomePage /> 
-
-    </main>
+    <>
+      <Hero />
+      <FeaturedCreators />
+      <FeaturedPosts />
+      <SignupCTA />
+    </>
   );
 }

@@ -1,0 +1,209 @@
+// ============================================
+// DESIGN SYSTEM VARIABLES - WARM EARTHY PALETTE
+// ============================================
+
+// --------------------------------------------
+// COLOR PALETTE - EARTHY & NATURAL
+// --------------------------------------------
+
+// Primary Colors - Terracotta/Burnt Orange
+$color-primary-50: #fef6f3;
+$color-primary-100: #fde8df;
+$color-primary-200: #fbcfbf;
+$color-primary-300: #f7a88e;
+$color-primary-400: #f39170;
+$color-primary-500: #e07a5f;  // Main terracotta
+$color-primary-600: #c8624a;
+$color-primary-700: #a84d3b;
+$color-primary-800: #8a4032;
+$color-primary-900: #72362b;
+
+// Secondary Colors - Warm Brown
+$color-secondary-50: #f5f2f0;
+$color-secondary-100: #e6ddd7;
+$color-secondary-200: #d0bcb0;
+$color-secondary-300: #b59784;
+$color-secondary-400: #9d7561;
+$color-secondary-500: #81523f;  // Main warm brown
+$color-secondary-600: #6d4536;
+$color-secondary-700: #5a392e;
+$color-secondary-800: #4a2f27;
+$color-secondary-900: #3d2722;
+
+// Accent Colors - Golden Yellow
+$color-accent-50: #fefaf3;
+$color-accent-100: #fef3e0;
+$color-accent-200: #fde4c0;
+$color-accent-300: #fbce96;
+$color-accent-400: #f8b778;
+$color-accent-500: #f4a261;  // Main golden yellow
+$color-accent-600: #e28943;
+$color-accent-700: #c66f30;
+$color-accent-800: #a35928;
+$color-accent-900: #874924;
+
+// Neutral/Warm Grays
+$color-gray-50: #faf9f7;
+$color-gray-100: #f5f3f0;
+$color-gray-200: #e8e4df;
+$color-gray-300: #d4cec6;
+$color-gray-400: #b3a99d;
+$color-gray-500: #8d8378;
+$color-gray-600: #6e6760;
+$color-gray-700: #584f49;
+$color-gray-800: #463e39;
+$color-gray-900: #3a3330;
+
+// Semantic Colors - Warm variants
+$color-success: #6b9f4f;        // Warm green
+$color-success-light: #e8f3e0;
+$color-error: #d95d39;          // Warm red
+$color-error-light: #fce8e3;
+$color-warning: #e89b3c;        // Warm orange
+$color-warning-light: #fef3e6;
+$color-info: #7d9fb8;           // Warm blue-gray
+$color-info-light: #e8f0f6;
+
+// Background Colors
+$color-bg-primary: #ffffff;
+$color-bg-secondary: #faf9f7;     // Warm off-white
+$color-bg-tertiary: #f5f3f0;
+$color-bg-dark: $color-gray-900;
+
+// Text Colors
+$color-text-primary: #3a3330;     // Warm dark brown
+$color-text-secondary: #6e6760;   // Medium warm gray
+$color-text-tertiary: #8d8378;    // Light warm gray
+$color-text-inverse: #ffffff;
+
+// Border Colors
+$color-border-light: #e8e4df;
+$color-border-default: #d4cec6;
+$color-border-dark: #b3a99d;
+
+// --------------------------------------------
+// TYPOGRAPHY
+// --------------------------------------------
+
+$font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-family-heading: 'Inter', $font-family-primary;
+$font-family-mono: 'Menlo', 'Monaco', 'Courier New', monospace;
+
+// Font Sizes
+$font-size-xs: 0.75rem;      // 12px
+$font-size-sm: 0.875rem;     // 14px
+$font-size-base: 1rem;       // 16px
+$font-size-lg: 1.125rem;     // 18px
+$font-size-xl: 1.25rem;      // 20px
+$font-size-2xl: 1.5rem;      // 24px
+$font-size-3xl: 1.875rem;    // 30px
+$font-size-4xl: 2.25rem;     // 36px
+$font-size-5xl: 3rem;        // 48px
+$font-size-6xl: 3.75rem;     // 60px
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Line Heights
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// --------------------------------------------
+// SPACING SYSTEM
+// --------------------------------------------
+
+$spacing-0: 0;
+$spacing-1: 0.25rem;   // 4px
+$spacing-2: 0.5rem;    // 8px
+$spacing-3: 0.75rem;   // 12px
+$spacing-4: 1rem;      // 16px
+$spacing-5: 1.25rem;   // 20px
+$spacing-6: 1.5rem;    // 24px
+$spacing-8: 2rem;      // 32px
+$spacing-10: 2.5rem;   // 40px
+$spacing-12: 3rem;     // 48px
+$spacing-16: 4rem;     // 64px
+$spacing-20: 5rem;     // 80px
+$spacing-24: 6rem;     // 96px
+$spacing-32: 8rem;     // 128px
+
+// --------------------------------------------
+// LAYOUT
+// --------------------------------------------
+
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+$container-2xl: 1536px;
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Z-Index Scale
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// --------------------------------------------
+// BORDERS & RADIUS
+// --------------------------------------------
+
+$border-width-thin: 1px;
+$border-width-default: 2px;
+
+$radius-none: 0;
+$radius-sm: 0.25rem;
+$radius-default: 0.5rem;
+$radius-md: 0.75rem;
+$radius-lg: 1rem;
+$radius-xl: 1.5rem;
+$radius-2xl: 2rem;
+$radius-full: 9999px;
+
+// --------------------------------------------
+// SHADOWS - Warmer tones
+// --------------------------------------------
+
+$shadow-xs: 0 1px 2px 0 rgba(58, 51, 48, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba(58, 51, 48, 0.1), 0 1px 2px -1px rgba(58, 51, 48, 0.1);
+$shadow-default: 0 4px 6px -1px rgba(58, 51, 48, 0.1), 0 2px 4px -2px rgba(58, 51, 48, 0.1);
+$shadow-md: 0 10px 15px -3px rgba(58, 51, 48, 0.1), 0 4px 6px -4px rgba(58, 51, 48, 0.1);
+$shadow-lg: 0 20px 25px -5px rgba(58, 51, 48, 0.1), 0 8px 10px -6px rgba(58, 51, 48, 0.1);
+$shadow-xl: 0 25px 50px -12px rgba(58, 51, 48, 0.25);
+
+// --------------------------------------------
+// TRANSITIONS
+// --------------------------------------------
+
+$duration-fast: 150ms;
+$duration-base: 200ms;
+$duration-medium: 300ms;
+$duration-slow: 500ms;
+
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+$transition-all: all $duration-base $ease-in-out;
+$transition-colors: color $duration-base $ease-in-out,
+                    background-color $duration-base $ease-in-out,
+                    border-color $duration-base $ease-in-out;
+$transition-transform: transform $duration-base $ease-in-out;

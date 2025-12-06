@@ -1,52 +1,123 @@
-import Image from "next/image";
-import AuthorCard from "@/components/AuthorCard/AuthorCard";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { doc, getDoc, query, where, orderBy, collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
+import { useAuth } from "@/context/AuthContext";
 import BlogPost from "@/components/BlogPost/BlogPost";
-import styles from "../page.module.scss"; // adjust path if your styles file is elsewhere
+import Link from "next/link";
+import styles from "./page.module.scss";
 
-import ProfileLayout from '@/components/UserProfile/ProfileLayout';
-import ProfileActions from '@/components/UserProfile/ProfileActions';
+export default function AuthorProfile() {
+  const params = useParams();
+  const id = params?.id as string;
+  const { user: currentUser } = useAuth();
 
-export default async function AuthorProfile({ params }: { params: Promise<{ id: string }> }) {
-  const { id } =  await params;
-  const userSnap = await getDoc(doc(db, "users", id));
-  const user = userSnap.exists() ? (userSnap.data() as any) : null;
-  const postsQ = query(collection(db, "posts"), where("authorId", "==", id), orderBy("createdAt", "desc"));
-  const postsSnap = await getDocs(postsQ);
-  const posts = postsSnap.docs.map((d) => ({ id: d.id, ...(d.data() as any) }));
+  const [userData, setUserData] = useState<any>(null);
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const header = (
-    <>
-      <div className={styles.authorName}>{user?.fullName}</div>
-      <div className={styles.bio}>{user?.bio}</div>
-    </>
-  );
+  const isOwner = currentUser?.uid === id;
 
-  const actions = (
-    <ProfileActions isOwner={false} />
-  );
+  useEffect(() => {
+    if (!id) return;
+
+    async function loadProfile() {
+      try {
+        const userSnap = await getDoc(doc(db, "users", id));
+        if (userSnap.exists()) {
+          setUserData(userSnap.data());
+        }
+
+        const postsQ = query(
+          collection(db, "posts"),
+          where("authorId", "==", id),
+          orderBy("createdAt", "desc")
+        );
+        const postsSnap = await getDocs(postsQ);
+        const postsList = postsSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        setPosts(postsList);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadProfile();
+  }, [id]);
+
+  if (loading) {
+    return <div className="container"><p>Loading...</p></div>;
+  }
+
+  if (!userData) {
+    return (
+      <div className="container">
+        <h1>Profile not found</h1>
+        <Link href="/authors" className="btn btn--primary">Back to Authors</Link>
+      </div>
+    );
+  }
 
   return (
-    <ProfileLayout header={header} actions={actions}>
-      <div className={styles.postsSection}>
-        <h2>Posts by {user?.fullName}</h2>
-        <div className={styles.reader}>
-          <div className={styles.postList}>
-            {posts.map((post) => (
-              <BlogPost
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                content={post.content}
-                avatarUrl={user?.avatarUrl || "/file.svg"}
-                time={post.createdAt?.seconds ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : ""}
-                likes={post.likes || 0}
-              />
-            ))}
+    <div className={styles.page}>
+      <div className={styles.coverSection}>
+        <div className={styles.coverPlaceholder}></div>
+      </div>
+
+      <div className="container">
+        <div className={styles.profileHeader}>
+          <div className={styles.avatarSection}>
+            <img
+              src={userData.avatarUrl || "/file.svg"}
+              alt={userData.fullName || "User"}
+              className={styles.avatar}
+            />
+          </div>
+
+          <div className={styles.profileInfo}>
+            <div className={styles.nameRow}>
+              <div>
+                <h1 className={styles.name}>{userData.fullName || "Anonymous"}</h1>
+                {userData.username && <p className={styles.username}>{userData.username}</p>}
+              </div>
+
+              {isOwner && (
+                <Link href="/profile/edit" className="btn btn--outline">Edit Profile</Link>
+              )}
+            </div>
+
+            {userData.bio && <p className={styles.bio}>{userData.bio}</p>}
           </div>
         </div>
+
+        <div className={styles.postsSection}>
+          <h2 className={styles.sectionTitle}>Posts</h2>
+
+          {posts.length === 0 ? (
+            <p>No posts yet.</p>
+          ) : (
+            <div className="grid grid--cols-1 grid--md-cols-2 grid--lg-cols-3 grid--gap-6">
+              {posts.map((post) => (
+                <BlogPost
+                  key={post.id}
+                  id={post.id}
+                  title={post.title}
+                  excerpt={post.excerpt || post.content}
+                  author={{
+                    name: userData.fullName || "Anonymous",
+                    avatar: userData.avatarUrl,
+                  }}
+                  date={post.createdAt?.seconds ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : ""}
+                  category={post.category}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </ProfileLayout>
+    </div>
   );
 }

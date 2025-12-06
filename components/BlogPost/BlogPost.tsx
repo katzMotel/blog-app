@@ -1,34 +1,71 @@
-"use client";
-import React from "react";
-import styles from "./BlogPost.module.scss"
-import Link from "next/link"
-import { useState } from "react"
-import { db } from "@/lib/firebaseConfig"
-import { doc, updateDoc, deleteDoc } from "firebase/firestore"
-import PostHeader from "@/components/PostHeader/PostHeader"
+// components/BlogPost/BlogPost.tsx
+import styles from './BlogPost.module.scss';
+import Link from 'next/link';
+
 interface BlogPostProps {
-  id: string; // Add id prop
+  id: string;
   title: string;
-  content: string;
-  avatarUrl: string;
-  time: string;
-  likes: number;
+  excerpt: string;
+  content?: string;
+  author?: {
+    name: string;
+    avatar?: string;
+  };
+  date?: string;
+  category?: string;
+  image?: string;
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ id, title, content, avatarUrl, time, likes }) => {
+export default function BlogPost({
+  id,
+  title,
+  excerpt,
+  content,
+  author,
+  date,
+  category,
+  image,
+}: BlogPostProps) {
   return (
-    <Link href={`/posts/${id}`}>
-      <div className={styles.blogPost}>
-        <PostHeader id={id} title={title} authorName={undefined} time={time} />
-        <p className={styles.content}>{content}</p>
-        <div className={styles.footer}>
-          <img src={avatarUrl} alt="Avatar" className={styles.avatar} />
-          <span className={styles.time}>{time}</span>
-          <span className={styles.likes}>{likes} Likes</span>
-        </div>
-      </div>
-    </Link>
-  );
-};
+    <article className={styles.blogPost}>
+      {image && (
+        <img src={image} alt={title} className={styles.image} />
+      )}
 
-export default BlogPost;
+      <Link href={`/posts/${id}`}>
+        <h3 className={styles.title}>{title}</h3>
+      </Link>
+
+      <p className={styles.excerpt}>{excerpt || content}</p>
+
+      <div className={styles.meta}>
+        <div className={styles.author}>
+          {author && (
+            <>
+              {author.avatar && (
+                <img
+                  src={author.avatar}
+                  alt={author.name}
+                  className={styles.authorAvatar}
+                />
+              )}
+              <div className={styles.authorInfo}>
+                <span className={styles.authorName}>{author.name}</span>
+                {date && <span className={styles.date}>{date}</span>}
+              </div>
+            </>
+          )}
+        </div>
+
+        {category && <span className={styles.category}>{category}</span>}
+      </div>
+
+      <Link href={`/posts/${id}`} className={styles.readMore}>
+        Read more
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+        </svg>
+      </Link>
+    </article>
+  );
+}

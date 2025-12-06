@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Cookie, Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import '../styles/globals.scss';
 import { AuthProvider } from "@/context/AuthContext";
 import CookieBanner from "@/components/CookieBanner";
 import Home from "./page";

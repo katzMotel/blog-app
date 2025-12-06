@@ -1,18 +1,186 @@
-.blogPost {
-  border: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  padding: 12px;
-  margin-bottom: 16px;
+@import '../../styles/variables';
+@import '../../styles/mixins';
 
+// --------------------------------------------
+// BLOG POST CARD COMPONENT
+// --------------------------------------------
+
+.blogPost {
+  @include card-interactive;
+  padding: $spacing-6;
+  margin-bottom: $spacing-6;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    $color-bg-primary 0%,
+    rgba($color-primary-50, 0.3) 100%
+  );
+
+  @include respond-to(md) {
+    padding: $spacing-8;
+  }
+
+  // Add subtle border with warm tone
+  border: 1px solid $color-border-light;
+}
+
+// Post image (if you have one)
+.image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-6;
+  transition: $transition-transform;
+
+  .blogPost:hover & {
+    transform: scale(1.03);
+  }
 }
 
 .title {
-  font-size: 1.5em;
-  margin-bottom: 8px;
+  @include heading-3;
+  margin-bottom: $spacing-4;
+  color: $color-text-primary;
+  transition: $transition-colors;
+  
+  // Line clamp for consistent card heights
+  @include line-clamp(2);
+
+  .blogPost:hover & {
+    color: $color-primary-600;
+  }
+}
+
+.excerpt {
+  @include body-normal;
+  margin-bottom: $spacing-6;
+  flex: 1;
+  
+  // Show 3 lines max
+  @include line-clamp(3);
 }
 
 .content {
-  font-size: 1em;
-  color: #333;
+  @include body-normal;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-6;
+  flex: 1;
+  line-height: $line-height-relaxed;
+}
+
+// Post metadata (author, date, category)
+.meta {
+  @include flex-between;
+  padding-top: $spacing-4;
+  border-top: 1px solid $color-border-light;
+  flex-wrap: wrap;
+  gap: $spacing-3;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+}
+
+.authorAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-full;
+  object-fit: cover;
+  border: 2px solid $color-primary-200;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+}
+
+.authorName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  
+  &:hover {
+    color: $color-primary-600;
+  }
+}
+
+.date {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+// Category badge
+.category {
+  display: inline-flex;
+  padding: $spacing-1 $spacing-3;
+  background-color: $color-accent-100;
+  color: $color-accent-700;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// Read more link
+.readMore {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-primary-600;
+  margin-top: $spacing-4;
+  transition: $transition-colors;
+
+  &:hover {
+    color: $color-primary-700;
+    gap: $spacing-3;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: $transition-transform;
+  }
+}
+
+// Loading skeleton state (bonus)
+.skeleton {
+  .title,
+  .content,
+  .meta {
+    background: linear-gradient(
+      90deg,
+      $color-gray-200 0%,
+      $color-gray-100 50%,
+      $color-gray-200 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: $radius-sm;
+  }
+
+  .title {
+    height: 60px;
+  }
+
+  .content {
+    height: 100px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }

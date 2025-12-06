@@ -1,0 +1,18 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto $spacing-12;
+}
+
+.title {
+  @include heading-2;
+  margin-bottom: $spacing-4;
+}
+
+.description {
+  @include body-large;
+  color: $color-text-secondary;
+}

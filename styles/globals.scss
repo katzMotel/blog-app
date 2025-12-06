@@ -1,0 +1,283 @@
+// ============================================
+// GLOBAL STYLES
+// ============================================
+
+@import './_variables';
+@import './_mixins';
+
+// --------------------------------------------
+// BASE STYLES & RESET
+// --------------------------------------------
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-text-primary;
+  background-color: $color-bg-secondary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// --------------------------------------------
+// TYPOGRAPHY DEFAULTS
+// --------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-text-primary;
+  margin-bottom: $spacing-4;
+}
+
+h1 {
+  @include heading-1;
+}
+
+h2 {
+  @include heading-2;
+}
+
+h3 {
+  @include heading-3;
+}
+
+h4 {
+  @include heading-4;
+}
+
+p {
+  margin-bottom: $spacing-4;
+  line-height: $line-height-relaxed;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $color-primary-600;
+  text-decoration: none;
+  transition: $transition-colors;
+
+  &:hover {
+    color: $color-primary-700;
+    text-decoration: underline;
+  }
+}
+
+strong, b {
+  font-weight: $font-weight-semibold;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// --------------------------------------------
+// UTILITY CLASSES
+// --------------------------------------------
+
+// Container
+.container {
+  @include container;
+}
+
+// Flexbox Utilities
+.flex {
+  display: flex;
+
+  &--center {
+    @include flex-center;
+  }
+
+  &--between {
+    @include flex-between;
+  }
+
+  &--column {
+    @include flex-column;
+  }
+
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  &--gap-2 {
+    gap: $spacing-2;
+  }
+
+  &--gap-4 {
+    gap: $spacing-4;
+  }
+
+  &--gap-6 {
+    gap: $spacing-6;
+  }
+
+  &--gap-8 {
+    gap: $spacing-8;
+  }
+}
+
+// Grid Utilities
+.grid {
+  display: grid;
+
+  &--cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  &--cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &--cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  &--gap-4 {
+    gap: $spacing-4;
+  }
+
+  &--gap-6 {
+    gap: $spacing-6;
+  }
+
+  &--gap-8 {
+    gap: $spacing-8;
+  }
+}
+
+// Responsive Grid
+@include respond-to(md) {
+  .grid--md-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--md-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@include respond-to(lg) {
+  .grid--lg-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--lg-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+// Spacing Utilities
+.mt {
+  &-4 { margin-top: $spacing-4; }
+  &-6 { margin-top: $spacing-6; }
+  &-8 { margin-top: $spacing-8; }
+  &-12 { margin-top: $spacing-12; }
+}
+
+.mb {
+  &-4 { margin-bottom: $spacing-4; }
+  &-6 { margin-bottom: $spacing-6; }
+  &-8 { margin-bottom: $spacing-8; }
+  &-12 { margin-bottom: $spacing-12; }
+}
+
+.pt {
+  &-8 { padding-top: $spacing-8; }
+  &-12 { padding-top: $spacing-12; }
+  &-16 { padding-top: $spacing-16; }
+}
+
+.pb {
+  &-8 { padding-bottom: $spacing-8; }
+  &-12 { padding-bottom: $spacing-12; }
+  &-16 { padding-bottom: $spacing-16; }
+}
+
+// Text Utilities
+.text {
+  &--center { text-align: center; }
+  
+  &--secondary { color: $color-text-secondary; }
+  
+  &--lg { font-size: $font-size-lg; }
+  &--xl { font-size: $font-size-xl; }
+  &--2xl { font-size: $font-size-2xl; }
+  
+  &--semibold { font-weight: $font-weight-semibold; }
+  &--bold { font-weight: $font-weight-bold; }
+}
+
+// Button Classes
+.btn {
+  @include button-base;
+
+  &--primary {
+    @include button-primary;
+  }
+
+  &--outline {
+    @include button-outline;
+  }
+
+  &--lg {
+    @include button-large;
+  }
+}
+
+// Card Classes
+.card {
+  @include card-base;
+
+  &--interactive {
+    @include card-interactive;
+  }
+
+  &--padding {
+    padding: $spacing-6;
+
+    @include respond-to(md) {
+      padding: $spacing-8;
+    }
+  }
+}
+
+// Section Defaults
+.section {
+  padding: $spacing-12 0;
+
+  @include respond-to(md) {
+    padding: $spacing-16 0;
+  }
+
+  @include respond-to(lg) {
+    padding: $spacing-24 0;
+  }
+}
+
+// Animation Classes
+.fade-in {
+  @include fade-in;
+}
+
+.slide-in-up {
+  @include slide-in-up;
+}
