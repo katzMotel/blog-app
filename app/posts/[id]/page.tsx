@@ -141,7 +141,16 @@ export default function PostView() {
               )}
             </div>
           </header>
-
+          {/* Featured Image */}
+          {post.featuredImage && (
+            <div className={styles.featuredImageWrapper}>
+              <img 
+                src={post.featuredImage}
+                alt={post.title}
+                className={styles.featuredImage}
+              />
+            </div>
+          )}
           {/* Post Content */}
           <div
             className={styles.content}
