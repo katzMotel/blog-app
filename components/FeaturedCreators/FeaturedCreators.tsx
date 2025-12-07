@@ -1,34 +1,40 @@
+"use client";
+
 import styles from './FeaturedCreators.module.scss';
 import AuthorCard from '../AuthorCard/AuthorCard';
-
-const featuredCreators = [
-  {
-    id: '1',
-    name: 'Jimmy Doe',
-    username: 'jimmydoe',
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
-    bio: 'Highlighting creativity and passion in every post.',
-    stats: { posts: 45, followers: 1200 }
-  },
-  {
-    id: '2',
-    name: 'Jane Smith',
-    username: 'janesmith',
-    avatar: 'https://randomuser.me/api/portraits/women/32.jpg',
-    bio: 'Dive into their journeys and insights',
-    stats: { posts: 67, followers: 2100 }
-  },
-  {
-    id: '3',
-    name: 'Robert Brown',
-    username: 'robertbrown',
-    avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
-    bio: 'Connect with creators and fellow enthusiasts',
-    stats: { posts: 89, followers: 3400 }
-  },
-];
+import { db } from '@/lib/firebaseConfig';
+import { useEffect, useState } from 'react';
+import { query, collection, limit, getDocs } from 'firebase/firestore';
 
 export default function FeaturedCreators() {
+  const [creators, setCreators] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchCreators() {
+      try {
+        const q = query(collection(db, 'users'), limit(3));
+        const snap = await getDocs(q);
+        const users = snap.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.fullName || data.name || 'Anonymous',
+            username: data.username || `user${doc.id.slice(0, 6)}`,
+            avatar: data.avatarUrl || data.avatar || '/file.svg',
+            bio: data.bio || 'No bio yet.',
+          };
+        });
+        setCreators(users);
+      } catch (err) {
+        console.error('Failed to load creators:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCreators();
+  }, []);
+
   return (
     <section className={`section ${styles.section}`}>
       <div className="container">
@@ -40,11 +46,17 @@ export default function FeaturedCreators() {
           </p>
         </div>
 
-        <div className="grid grid--cols-1 grid--md-cols-2 grid--lg-cols-3 grid--gap-6">
-          {featuredCreators.map((creator) => (
-            <AuthorCard key={creator.id} {...creator} />
-          ))}
-        </div>
+        {loading ? (
+          <p>Loading creators...</p>
+        ) : creators.length === 0 ? (
+          <p>No creators yet. Be the first to sign up!</p>
+        ) : (
+          <div className="grid grid--cols-1 grid--md-cols-2 grid--lg-cols-3 grid--gap-6">
+            {creators.map((creator) => (
+              <AuthorCard key={creator.id} {...creator} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
