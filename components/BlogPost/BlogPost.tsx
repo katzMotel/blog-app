@@ -7,6 +7,7 @@ interface BlogPostProps {
   title: string;
   excerpt: string;
   content?: string;
+  avatarUrl?:string;
   author?: {
     name: string;
     avatar?: string;

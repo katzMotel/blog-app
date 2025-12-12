@@ -45,6 +45,7 @@ export default function EditProfilePage() {
 
     async function loadProfile() {
       try {
+        if (!user) return;
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
           const data = userDoc.data();

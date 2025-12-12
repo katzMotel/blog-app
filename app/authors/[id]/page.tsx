@@ -179,7 +179,7 @@ export default function AuthorProfile() {
                   key={post.id}
                   id={post.id}
                   title={post.title}
-                  excerpt={post.excerpt || post.content}
+                  excerpt={post.excerpt || post.content || 'No excerpt available'}
                   author={{
                     name: userData.fullName || "Anonymous",
                     avatar: userData.avatarUrl,

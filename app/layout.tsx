@@ -4,7 +4,7 @@ import '../styles/globals.scss';
 import { AuthProvider } from "@/context/AuthContext";
 import CookieBanner from "@/components/CookieBanner";
 import Home from "./page";
-import HomePage from "@/components/HomePage";
+
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 

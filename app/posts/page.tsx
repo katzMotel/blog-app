@@ -108,7 +108,7 @@ export default function PostsPage() {
               key={post.id}
               id={post.id}
               title={post.title}
-              excerpt={post.excerpt || post.content}
+              excerpt={post.excerpt || post.content||"No excerpt available"}
               author={{
                 name: post.authorName || "Anonymous",
                 avatar: post.authorAvatar,

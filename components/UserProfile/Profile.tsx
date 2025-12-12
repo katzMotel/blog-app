@@ -101,14 +101,18 @@ const actions = (
         <div className={styles.postsList}>
           {posts?.map((p) => (
             <BlogPost
-              key={p.id}
-              id={p.id}
-              title={p.title}
-              content={p.excerpt || ''}
-              avatarUrl={p.authorAvatar || '/file.svg'}
-              time={p.createdAt?.seconds ? new Date(p.createdAt.seconds * 1000).toLocaleDateString() : ''}
-              likes={p.likes || 0}
-            />
+            key={p.id}
+            id={p.id}
+            title={p.title}
+            excerpt={p.excerpt || 'No excerpt available'}  
+            author={{  
+              name: user.displayName || "Anonymous",
+              avatar: user.photoURL || p.authorAvatar || '/file.svg'
+            }}
+            date={p.createdAt?.seconds ? new Date(p.createdAt.seconds * 1000).toLocaleDateString() : ''}  
+            
+          />
+          
           ))}
         </div>
         <Link href="/posts/create" className={styles.createLink}>
